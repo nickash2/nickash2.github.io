@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: "Nick's Portfolio Site"
+title: "Nick's Portfolio Site (WIP)"
 email: n.ashiotis.work@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Welcome to my AI and Computer Science portfolio! I'm a BSc student passionate about artificial intelligence, 
@@ -59,7 +59,7 @@ plugins:
 author:
   name   : "Nicholas Assiotis"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Welcome to my AI and Computer Science portfolio! I'm a BSc student passionate about artificial intelligence, machine learning, and cutting-edge tech. This site showcases my projects, research, and insights as I explore the world of AI. Follow my journey as I build, learn, and innovate!"
+  bio    : "(WIP) Welcome to my AI and Computer Science portfolio! I'm a BSc student passionate about artificial intelligence, machine learning, and cutting-edge tech. This site showcases my projects, research, and insights as I explore the world of AI. Follow my journey as I build, learn, and innovate!"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"

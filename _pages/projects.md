@@ -1,5 +1,5 @@
 ---
 permalink: /projects/
 title: "My Projects"
-layout: single
+layout: posts
 ---
