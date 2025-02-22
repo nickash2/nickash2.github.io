@@ -59,7 +59,7 @@ plugins:
 author:
   name   : "Nicholas Assiotis"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Welcome to my AI and Computer Science portfolio! I’m a BSc student passionate about artificial intelligence, machine learning, and cutting-edge tech. This site showcases my projects, research, and insights as I explore the world of AI. Follow my journey as I build, learn, and innovate!"
+  bio    : "Welcome to my AI and Computer Science portfolio! I'm a BSc student passionate about artificial intelligence, machine learning, and cutting-edge tech. This site showcases my projects, research, and insights as I explore the world of AI. Follow my journey as I build, learn, and innovate!"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
