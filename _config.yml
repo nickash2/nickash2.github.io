@@ -19,6 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 Welcome to my AI and Computer Science portfolio! I’m a BSc student passionate about artificial intelligence, 
 machine learning, and cutting-edge tech. This site showcases my projects, research, 
 and insights as I explore the world of AI. Follow my journey as I build, learn, and innovate!
+baseurl: 
 github_username: nickash2
 minimal_mistakes_skin: default
 search: true
