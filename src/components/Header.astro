@@ -73,9 +73,10 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     <div class="absolute right-8 top-4">
       <a
         href={siteConfig.resume}
-        download
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex items-center gap-2 bg-[var(--accent-color)] text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
-        aria-label="Download CV"
+        aria-label="View CV"
       >
         CV
       </a>

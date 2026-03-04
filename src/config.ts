@@ -4,12 +4,12 @@ export const siteConfig = {
   description: "Portfolio website of Nicholas Assiotis",
   accentColor: "#1d4ed8",
   social: {
-    email: "n.ashiotis.work@gmail.com",
+    email: "contact@nickash.dev",
     linkedin: "https://www.linkedin.com/in/nicholas-assiotis/",
     twitter: "https://x.com/nickashdev",
     github: "https://github.com/nickash2",
   },
-  resume: "/resume.pdf",
+  resume: "https://drive.google.com/file/d/1y4E7yr3eh-6XBZzMdOFuN1OhfSpNMGGH/view?usp=sharing",
   aboutMe:
     "Swiss-Cypriot MSc student in Artificial Intelligence with research and industry experience in machine learning, reinforcement learning, and data-driven decision intelligence; published at ECAI 2025 @ PMLR and SPIE 2025 with collaborations including Harvard Medical School, passionate about bridging AI research and real-world applications in industrial innovation, FinTech, and social good.",
   skills: ["Python", "PyTorch", "TensorFlow/Keras", "NumPy", "Pandas", "Docker"],
