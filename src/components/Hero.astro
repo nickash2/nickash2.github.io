@@ -155,11 +155,12 @@ import { siteConfig } from "../config";
   >
     <a
       href={siteConfig.resume}
-      download
+      target="_blank"
+      rel="noopener noreferrer"
       class="ml-0 inline-flex items-center gap-2 bg-[var(--accent-color)] text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
-      aria-label="Download resume"
+      aria-label="View resume"
     >
-      Download CV
+      View CV
     </a>
     {
       siteConfig.social?.email && (
