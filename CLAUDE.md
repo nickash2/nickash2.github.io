@@ -25,7 +25,9 @@ npm run preview   # Preview production build
 
 The project follows a component-based architecture with all customization centralized in `src/config.ts`:
 
-- **Components** (`src/components/`): Individual Astro components for each section (Hero, About, Projects, Publications, Experience, Education, Header, Footer), plus shared building blocks: `Section.astro` (section shell + heading), `EntryCard.astro` (logo/title/date/bullets card), `SocialLinks.astro` (icon links, shown only for configured socials)
+- **Components** (`src/components/`): Individual Astro components for each section (Hero, About, Projects, Publications, Experience, Education, Header, Footer), plus shared building blocks: `Section.astro` (section shell + heading), `EntryCard.astro` (logo/title/date/bullets card, used by Education), `SocialLinks.astro` (icon links, shown only for configured socials), `Figure.astro` (white "paper plate" figure with responsive `srcset` and mono caption)
+- **Figures** (`public/figures/`): WebP figures taken from Nicholas's own papers (never invented imagery), each with a `-<width>.webp` small variant; referenced from `heroFigure` and `publications[].figure` in the config
+- **Section order**: Hero, Publications, About, Projects, Experience, Education. Experience renders as a compact list grouped by company, with each role's bullets in a `<details>` disclosure
 - **Navigation** (`src/navItems.ts`): Single list of section links used by both Header and Footer
 - **Main Layout** (`src/pages/index.astro`): Single-page layout that imports all components
 - **Configuration** (`src/config.ts`): Single source of truth for all content and customization
@@ -42,7 +44,8 @@ The project follows a component-based architecture with all customization centra
 - The site uses Tailwind CSS v4 with the Vite plugin configuration
 - No linting or testing framework is currently configured
 - All components are in `.astro` format (not React/Vue/etc)
-- The project uses IBM Plex Mono font loaded from Google Fonts
+- The project uses IBM Plex Sans (display/body) and IBM Plex Mono (dates, venues, captions and other metadata only, via `font-mono`), loaded from Google Fonts
+- The hero's single motion moment is a clip-path "plot reveal" on the forecast figure, disabled under `prefers-reduced-motion`
 - Social links in the config are all optional and will conditionally render
 
 ## Working with Components
@@ -56,10 +59,12 @@ When modifying components:
 ## Configuration Structure
 
 The `src/config.ts` exports a `siteConfig` object with these sections:
-- Basic info: name, title, description, accentColor
+- Basic info: name, title, tagline, researchStatement (hero lead; text before the first ":" is emphasised), description, accentColor
+- heroFigure: {src, srcSmall, width, height, alt, caption, source, link}
 - Social links: email, linkedin, twitter, github (all optional)
 - aboutMe: string
 - skills: string[]
 - projects: array of {name, description, link, skills}
-- experience: array of {company, title, dateRange, bullets}
+- publications: array of {title, authors, venue, link, year, note, collaboration?, figure?}
+- experience: array of {company, title, dateRange, logo, bullets} (consecutive roles at the same company are grouped)
 - education: array of {school, degree, dateRange, achievements}

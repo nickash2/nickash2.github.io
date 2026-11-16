@@ -12,6 +12,8 @@
   --color-accent: var(--accent-color);
   --color-accent-text: var(--accent-text);
   --color-page: var(--page-bg);
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 html {
@@ -26,7 +28,7 @@ html {
 }
 
 body {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-sans);
   background-color: var(--page-bg);
   color: var(--page-fg);
 }
