@@ -78,6 +78,16 @@ export const siteConfig = {
   ],
 experience: [
   {
+    company: "Leiden University",
+    title: "Teaching Assistant",
+    dateRange: "Sep 2026 - Present",
+    logo: "/logos/leiden_logo.jpeg",
+    bullets: [
+      "Introduction to Deep Learning",
+      "Social Network Analysis for Computer Scientists",
+    ],
+  },
+  {
     company: "LT Game Limited",
     title: "Machine Learning Engineer",
     dateRange: "Oct 2024 - Present",

@@ -14,60 +14,143 @@ for (const exp of siteConfig.experience ?? []) {
 {
   groups.length > 0 && (
     <Section id="experience" title="Experience">
-      <ol class="divide-y divide-gray-700/70 border-y border-gray-700/70">
-        {groups.map((group) => (
-          <li class="py-6 sm:grid sm:grid-cols-[3rem_1fr] sm:gap-x-5">
-            <div class="hidden sm:block pt-1">
-              {group.logo && (
-                <img
-                  src={group.logo}
-                  alt=""
-                  width="48"
-                  height="48"
-                  loading="lazy"
-                  decoding="async"
-                  class="w-12 h-12 rounded-md object-contain bg-gray-700"
-                />
-              )}
-            </div>
-            <div>
-              <h3 class="text-lg sm:text-xl font-semibold text-gray-100 text-balance">{group.company}</h3>
-              <ul class="mt-1">
+      <div class="exp-timeline relative pl-8 sm:pl-10" data-exp-timeline>
+        <div class="absolute left-[7px] sm:left-[11px] top-2 bottom-2 w-0.5 bg-gray-700" aria-hidden="true">
+          <div class="exp-progress absolute inset-x-0 top-0 bg-accent" />
+        </div>
+
+        <ol class="space-y-12">
+          {groups.map((group) => (
+            <li>
+              <div class="flex items-center gap-3">
+                {group.logo && (
+                  <img
+                    src={group.logo}
+                    alt=""
+                    width="40"
+                    height="40"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-10 h-10 rounded-md object-contain bg-gray-700"
+                  />
+                )}
+                <h3 class="text-xl sm:text-2xl font-semibold tracking-[-0.01em] text-gray-100 text-balance">
+                  {group.company}
+                </h3>
+              </div>
+
+              <ol class="mt-5 space-y-8">
                 {group.roles.map((role) => (
-                  <li>
-                    <details class="group/role">
-                      <summary class="flex min-h-11 cursor-pointer list-none items-center gap-x-4 py-2 [&::-webkit-details-marker]:hidden">
-                        <span class="flex flex-1 min-w-0 flex-col sm:flex-row sm:items-baseline sm:justify-between gap-x-4 gap-y-0.5">
-                          <span class="text-base sm:text-lg text-gray-300 group-hover/role:text-gray-100 transition-colors">
-                            {role.title}
-                          </span>
-                          <span class="shrink-0 font-mono text-xs sm:text-sm text-gray-400 whitespace-nowrap">
-                            {role.dateRange}
-                          </span>
-                        </span>
-                        <svg
-                          class="shrink-0 w-4 h-4 text-gray-400 transition-transform duration-200 group-open/role:rotate-180"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6" />
-                        </svg>
-                      </summary>
-                      <ul class="mt-1 mb-3 space-y-2 max-w-[65ch] list-disc pl-5 marker:text-gray-500">
-                        {role.bullets.map((bullet) => (
-                          <li class="text-sm sm:text-base text-gray-300 leading-relaxed">{bullet}</li>
-                        ))}
-                      </ul>
-                    </details>
+                  <li class="exp-role relative" data-exp-role>
+                    <span
+                      class="exp-dot absolute -left-8 sm:-left-10 top-1.5 ml-px sm:ml-[5px] w-3.5 h-3.5 rounded-full border-2 border-gray-500 bg-page"
+                      aria-hidden="true"
+                    />
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-x-4 gap-y-0.5">
+                      <h4 class="exp-title text-lg sm:text-xl font-medium text-gray-100">{role.title}</h4>
+                      <span class="shrink-0 font-mono text-xs sm:text-sm text-gray-400 whitespace-nowrap">
+                        {role.dateRange}
+                      </span>
+                    </div>
+                    <ul class="mt-3 space-y-2 max-w-[65ch] list-disc pl-5 marker:text-gray-500">
+                      {role.bullets.map((bullet, i) => (
+                        <li class="exp-bullet text-sm sm:text-base text-gray-300 leading-relaxed" style={`--i:${i}`}>
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
                   </li>
                 ))}
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ol>
+              </ol>
+            </li>
+          ))}
+        </ol>
+      </div>
     </Section>
   )
 }
+
+<style is:global>
+  .exp-progress {
+    height: calc(var(--exp-progress, 1) * 100%);
+  }
+  .exp-dot {
+    transition:
+      background-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .exp-role.is-active .exp-dot,
+  .exp-role.is-past .exp-dot {
+    background-color: var(--accent-color);
+    border-color: var(--accent-text);
+  }
+  .exp-role.is-active .exp-dot {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent-color) 30%, transparent);
+  }
+  .exp-role.is-active .exp-title {
+    color: var(--accent-text);
+  }
+
+  /* Bullets are visible by default; the reveal only applies once JS has enhanced the timeline. */
+  @media (prefers-reduced-motion: no-preference) {
+    .exp-enhanced .exp-role:not(.is-seen) .exp-bullet {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .exp-enhanced .exp-bullet {
+      transition:
+        opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--i, 0) * 90ms);
+    }
+  }
+</style>
+
+<script>
+  const timeline = document.querySelector<HTMLElement>("[data-exp-timeline]");
+  if (timeline) {
+    const roles = Array.from(timeline.querySelectorAll<HTMLElement>("[data-exp-role]"));
+    timeline.classList.add("exp-enhanced");
+
+    const seen = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-seen");
+            seen.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -15% 0px" },
+    );
+    roles.forEach((role) => seen.observe(role));
+
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const focus = window.innerHeight * 0.45;
+      const box = timeline.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (focus - box.top) / box.height));
+      timeline.style.setProperty("--exp-progress", progress.toFixed(4));
+
+      let active = -1;
+      roles.forEach((role, i) => {
+        if (role.getBoundingClientRect().top <= focus) active = i;
+      });
+      roles.forEach((role, i) => {
+        role.classList.toggle("is-active", i === active);
+        role.classList.toggle("is-past", i < active);
+      });
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  }
+</script>
