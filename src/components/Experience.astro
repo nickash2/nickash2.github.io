@@ -1,90 +1,156 @@
 ---
 import { siteConfig } from "../config";
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+import Section from "./Section.astro";
+
+type Role = (typeof siteConfig.experience)[number];
+const groups: { company: string; logo?: string; roles: Role[] }[] = [];
+for (const exp of siteConfig.experience ?? []) {
+  const last = groups[groups.length - 1];
+  if (last && last.company === exp.company) last.roles.push(exp);
+  else groups.push({ company: exp.company, logo: exp.logo, roles: [exp] });
+}
 ---
 
 {
-  hasExperience && (
-    <section id="experience" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-100">
-              Experience
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
+  groups.length > 0 && (
+    <Section id="experience" title="Experience">
+      <div class="exp-timeline relative pl-8 sm:pl-10" data-exp-timeline>
+        <div class="absolute left-[7px] sm:left-[11px] top-2 bottom-2 w-0.5 bg-gray-700" aria-hidden="true">
+          <div class="exp-progress absolute inset-x-0 top-0 bg-accent" />
+        </div>
 
-          <div class="lg:col-span-8">
-            <div class="relative">
-              {siteConfig.experience.map((exp, index) => (
-                <div class="relative mb-12 last:mb-0">
-                  {/* Timeline dot at top of card */}
-                  <div
-                    class="absolute left-1/2 -top-2 w-4 h-4 bg-white border-2 rounded-full -translate-x-1/2 z-20 transition-all duration-300"
-                    style={`border-color: ${siteConfig.accentColor}; background-color: ${siteConfig.accentColor}`}
+        <ol class="space-y-12">
+          {groups.map((group) => (
+            <li>
+              <div class="flex items-center gap-3">
+                {group.logo && (
+                  <img
+                    src={group.logo}
+                    alt=""
+                    width="40"
+                    height="40"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-10 h-10 rounded-md object-contain bg-gray-700"
                   />
+                )}
+                <h3 class="text-xl sm:text-2xl font-semibold tracking-[-0.01em] text-gray-100 text-balance">
+                  {group.company}
+                </h3>
+              </div>
 
-                  {/* Connecting line below card */}
-                  {index < siteConfig.experience.length - 1 && (
-                    <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" />
-                  )}
-
-                  {/* Experience card */}
-                  <div class="bg-gray-800 rounded-lg shadow-sm border border-gray-700 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                    <div class="flex gap-4 mb-4">
-                      {/* Logo placeholder */}
-                      <div class="flex-shrink-0">
-                        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-gray-700 rounded-lg flex items-center justify-center border border-gray-600">
-                          {exp.logo ? (
-                            <img src={exp.logo} alt={`${exp.company} logo`} class="w-12 h-12 sm:w-14 sm:h-14 object-contain" />
-                          ) : (
-                            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-500 rounded"></div>
-                          )}
-                        </div>
-                      </div>
-                      
-                      {/* Content */}
-                      <div class="flex-1">
-                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                          <div>
-                            <h3 class="text-lg sm:text-xl font-semibold text-gray-100">
-                              {exp.title}
-                            </h3>
-                            <p
-                              class="text-base sm:text-lg"
-                              style={`color: ${siteConfig.accentColor}`}
-                            >
-                              {exp.company}
-                            </p>
-                          </div>
-                          <span class="text-xs sm:text-sm text-gray-400 mt-2 sm:mt-0">
-                            {exp.dateRange}
-                          </span>
-                        </div>
-                      </div>
+              <ol class="mt-5 space-y-8">
+                {group.roles.map((role) => (
+                  <li class="exp-role relative" data-exp-role>
+                    <span
+                      class="exp-dot absolute -left-8 sm:-left-10 top-1.5 ml-px sm:ml-[5px] w-3.5 h-3.5 rounded-full border-2 border-gray-500 bg-page"
+                      aria-hidden="true"
+                    />
+                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-x-4 gap-y-0.5">
+                      <h4 class="exp-title text-lg sm:text-xl font-medium text-gray-100">{role.title}</h4>
+                      <span class="shrink-0 font-mono text-xs sm:text-sm text-gray-400 whitespace-nowrap">
+                        {role.dateRange}
+                      </span>
                     </div>
-
-                    <ul class="space-y-2">
-                      {exp.bullets.map((bullet) => (
-                        <li class="flex items-start">
-                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-500 mt-2 mr-3 flex-shrink-0" />
-                          <span class="text-sm sm:text-base text-gray-300">
-                            {bullet}
-                          </span>
+                    <ul class="mt-3 space-y-2 max-w-[65ch] list-disc pl-5 marker:text-gray-500">
+                      {role.bullets.map((bullet, i) => (
+                        <li class="exp-bullet text-sm sm:text-base text-gray-300 leading-relaxed" style={`--i:${i}`}>
+                          {bullet}
                         </li>
                       ))}
                     </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+                  </li>
+                ))}
+              </ol>
+            </li>
+          ))}
+        </ol>
       </div>
-    </section>
+    </Section>
   )
 }
+
+<style is:global>
+  .exp-progress {
+    height: calc(var(--exp-progress, 1) * 100%);
+  }
+  .exp-dot {
+    transition:
+      background-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .exp-role.is-active .exp-dot,
+  .exp-role.is-past .exp-dot {
+    background-color: var(--accent-color);
+    border-color: var(--accent-text);
+  }
+  .exp-role.is-active .exp-dot {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent-color) 30%, transparent);
+  }
+  .exp-role.is-active .exp-title {
+    color: var(--accent-text);
+  }
+
+  /* Bullets are visible by default; the reveal only applies once JS has enhanced the timeline. */
+  @media (prefers-reduced-motion: no-preference) {
+    .exp-enhanced .exp-role:not(.is-seen) .exp-bullet {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .exp-enhanced .exp-bullet {
+      transition:
+        opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--i, 0) * 90ms);
+    }
+  }
+</style>
+
+<script>
+  const timeline = document.querySelector<HTMLElement>("[data-exp-timeline]");
+  if (timeline) {
+    const roles = Array.from(timeline.querySelectorAll<HTMLElement>("[data-exp-role]"));
+    timeline.classList.add("exp-enhanced");
+
+    const seen = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-seen");
+            seen.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -15% 0px" },
+    );
+    roles.forEach((role) => seen.observe(role));
+
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const focus = window.innerHeight * 0.45;
+      const box = timeline.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (focus - box.top) / box.height));
+      timeline.style.setProperty("--exp-progress", progress.toFixed(4));
+
+      let active = -1;
+      roles.forEach((role, i) => {
+        if (role.getBoundingClientRect().top <= focus) active = i;
+      });
+      roles.forEach((role, i) => {
+        role.classList.toggle("is-active", i === active);
+        role.classList.toggle("is-past", i < active);
+      });
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  }
+</script>

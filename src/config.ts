@@ -6,10 +6,23 @@ export const siteConfig = {
   social: {
     email: "contact@nickash.dev",
     linkedin: "https://www.linkedin.com/in/nicholas-assiotis/",
-    twitter: "https://x.com/nickashdev",
+    // twitter: "https://x.com/nickashdev",
     github: "https://github.com/nickash2",
   },
   resume: "https://drive.google.com/file/d/1y4E7yr3eh-6XBZzMdOFuN1OhfSpNMGGH/view?usp=sharing",
+  researchStatement:
+    "I build machine learning grounded in the real world: physics-informed GNNs for air-pollution forecasting, deep learning for cancer detection in OCT imaging, and more stable reinforcement learning.",
+  tagline: "MSc Artificial Intelligence, Leiden University",
+  heroFigure: {
+    src: "/figures/no2-forecast-1181.webp",
+    srcSmall: "/figures/no2-forecast-640.webp",
+    width: 1181,
+    height: 702,
+    alt: "Three line charts of hourly NO₂ concentration in Amsterdam, Rotterdam and Utrecht from 9 to 13 December. The PI-GCN-GRU model's forecasts (red) follow the measured ground truth (black) through each city's peaks and troughs.",
+    caption: "PI-GCN-GRU forecasts (red) and ground truth (black) of NO₂ concentrations, 9–13 December, test set.",
+    source: "Fig. 3, ECAI 2025 @ PMLR",
+    link: "https://proceedings.mlr.press/v277/assiotis25a",
+  },
   aboutMe:
     "Swiss-Cypriot MSc student in Artificial Intelligence with research and industry experience in machine learning, reinforcement learning, and data-driven decision intelligence; published at ECAI 2025 @ PMLR and SPIE 2025 with collaborations including Harvard Medical School, passionate about bridging AI research and real-world applications in industrial innovation, FinTech, and social good.",
   skills: ["Python", "PyTorch", "TensorFlow/Keras", "NumPy", "Pandas", "Docker"],
@@ -25,7 +38,7 @@ export const siteConfig = {
     name: "Deep Learning Classification of Multi-Spectral OCT Images",
     description:
       "Published at SPIE 2025 in collaboration with Harvard Medical School. Built a DenseNet-based model for colorectal cancer detection from en face multi-spectral OCT images, achieving 91% accuracy and demonstrating the potential of AI-assisted diagnostics.",
-    link: "https://spie.org/conferences-and-exhibitions/optical-coherence-tomography-and-coherence-domain-optical-methods-in-biomedicine",
+    link: "https://doi.org/10.1117/12.3042820",
     skills: ["Python", "PyTorch", "TensorFlow", "Computer Vision", "Biomedical Imaging", "Deep Learning"],
   },
   {
@@ -44,6 +57,14 @@ export const siteConfig = {
       link: "https://proceedings.mlr.press/v277/assiotis25a",
       year: 2025,
       note: "Presented and published at ECAI 2025, Bologna, Italy",
+      figure: {
+        src: "/figures/pi-gnn-architecture-1200.webp",
+        srcSmall: "/figures/pi-gnn-architecture-680.webp",
+        width: 1200,
+        height: 309,
+        alt: "Diagram: the GNN's prediction ŷ feeds two losses, a data-driven loss L_DD against the observation y′ and a physics loss L_phy, which combine as L = L_DD + λ_phy · L_phy.",
+        caption: "Fig. 2: model architecture with physics-informed graph neural networks.",
+      },
     },
     {
       title: "Deep Learning Classification of Multi-Spectral OCT Images",
@@ -52,9 +73,30 @@ export const siteConfig = {
       link: "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13305/3042820/Deep-learning-classification-of-en-face-multi-spectral-optical-coherence/10.1117/12.3042820.short",
       year: 2025,
       note: "Published in SPIE 2025 in collaboration with Harvard Medical School",
+      collaboration: "Harvard Medical School",
+      figure: {
+        src: "/figures/densenet121-architecture-470.webp",
+        width: 470,
+        height: 168,
+        // Source is a low-resolution screenshot: show it near its native size rather than upscaling.
+        maxDisplayWidth: 564,
+        alt: "Diagram of the DenseNet121 architecture: a 224×224 input passes through a convolution (C1) and four dense blocks (D1–D4) separated by transition layers (T1–T3), then average pooling, a dense layer and softmax. Expanded rows show the stacked dense layers (DL1–DL6) inside a dense block and the convolution and pooling inside a transition block.",
+        caption: "DenseNet121, the network used in this work, with dense blocks, transition blocks and dense layers.",
+        source: "Image: Jee et al. (2022).",
+      },
     },
   ],
 experience: [
+  {
+    company: "Leiden University",
+    title: "Teaching Assistant",
+    dateRange: "Sep 2026 - Present",
+    logo: "/logos/leiden_logo.jpeg",
+    bullets: [
+      "Supporting tutorials and workgroups for Introduction to Deep Learning and Social Network Analysis for Computer Scientists.",
+      "Grading assignments, assessing students' abilities, and helping students prepare for exams.",
+    ],
+  },
   {
     company: "LT Game Limited",
     title: "Machine Learning Engineer",
