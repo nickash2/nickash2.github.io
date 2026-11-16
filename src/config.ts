@@ -78,6 +78,16 @@ export const siteConfig = {
   ],
 experience: [
   {
+    company: "Leiden University",
+    title: "Teaching Assistant",
+    dateRange: "Sep 2026 - Present",
+    logo: "/logos/leiden_logo.jpeg",
+    bullets: [
+      "Supporting tutorials and workgroups for Introduction to Deep Learning and Social Network Analysis for Computer Scientists.",
+      "Grading assignments, assessing students' abilities, and helping students prepare for exams.",
+    ],
+  },
+  {
     company: "LT Game Limited",
     title: "Machine Learning Engineer",
     dateRange: "Oct 2024 - Present",
@@ -130,19 +140,6 @@ experience: [
       "Conducted technical workshops on Python, ROS, and Gazebo simulation for new team members.",
       "Created internal documentation and troubleshooting guides to streamline development workflows.",
       "Supported team training and competition preparation through mentoring and hands-on demos.",
-    ],
-  },
-  {
-    company: "Leiden University",
-    title: "Teaching Assistant",
-    dateRange: "Sep 2026 - Present",
-    logo: "/logos/leiden_logo.jpeg",
-    bullets: [
-      "Courses: Introduction to Deep Learning; Social Network Analysis for Computer Scientists.",
-      "Assess students' abilities.",
-      "Support tutorials and workgroups.",
-      "Grade assignments.",
-      "Help students prepare for exams.",
     ],
   },
 ],
