@@ -1,57 +1,44 @@
 ---
 import { siteConfig } from "../config";
+import Section from "./Section.astro";
 const hasPublications = siteConfig.publications && siteConfig.publications.length > 0;
 ---
 
 {
   hasPublications && (
-    <section id="publications" class="p-8 sm:p-12 md:p-16 lg:p-24">
-      <div>
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-          <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-100">
-              Publications
-            </h2>
-            <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
-            />
-          </div>
-
-          <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.publications.map((p) => (
-                <div class="bg-gray-800 rounded-lg shadow-sm border border-gray-700 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                    <div>
-                      <h3 class="text-lg sm:text-xl font-semibold text-gray-100">
-                        {p.title}
-                      </h3>
-                      <p
-                        class="text-base sm:text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
-                      >
-                        {p.authors} — <em>{p.venue}</em>
-                      </p>
-                    </div>
-                    <span class="text-xs sm:text-sm text-gray-400 mt-2 sm:mt-0">
-                      {p.year}
-                    </span>
-                  </div>
-
-                  {p.note && <p class="text-sm text-gray-300 mb-3">{p.note}</p>}
-
-                  {p.link && (
-                    <p>
-                      <a href={p.link} target="_blank" rel="noopener noreferrer" class="text-[var(--accent-color)] underline">Read paper</a>
-                    </p>
-                  )}
-                </div>
-              ))}
+    <Section id="publications" title="Publications">
+      <div class="space-y-8">
+        {siteConfig.publications.map((p) => (
+          <article class="bg-gray-800 rounded-lg shadow-sm border border-gray-700 p-4 sm:p-5 md:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+              <div>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-100">{p.title}</h3>
+                <p class="text-base sm:text-lg text-accent-text">
+                  {p.authors} — <em>{p.venue}</em>
+                </p>
+              </div>
+              <span class="text-xs sm:text-sm text-gray-400 mt-2 sm:mt-0">{p.year}</span>
             </div>
-          </div>
-        </div>
+
+            {p.note && <p class="text-sm text-gray-300 mb-3">{p.note}</p>}
+
+            {p.link && (
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 min-h-11 text-accent-text font-medium underline underline-offset-4 decoration-1 hover:decoration-2"
+              >
+                Read paper
+                <span class="sr-only">: {p.title} (opens in a new tab)</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </a>
+            )}
+          </article>
+        ))}
       </div>
-    </section>
+    </Section>
   )
 }

@@ -6,7 +6,7 @@ export const siteConfig = {
   social: {
     email: "contact@nickash.dev",
     linkedin: "https://www.linkedin.com/in/nicholas-assiotis/",
-    twitter: "https://x.com/nickashdev",
+    // twitter: "https://x.com/nickashdev",
     github: "https://github.com/nickash2",
   },
   resume: "https://drive.google.com/file/d/1y4E7yr3eh-6XBZzMdOFuN1OhfSpNMGGH/view?usp=sharing",
@@ -25,7 +25,7 @@ export const siteConfig = {
     name: "Deep Learning Classification of Multi-Spectral OCT Images",
     description:
       "Published at SPIE 2025 in collaboration with Harvard Medical School. Built a DenseNet-based model for colorectal cancer detection from en face multi-spectral OCT images, achieving 91% accuracy and demonstrating the potential of AI-assisted diagnostics.",
-    link: "https://spie.org/conferences-and-exhibitions/optical-coherence-tomography-and-coherence-domain-optical-methods-in-biomedicine",
+    link: "https://doi.org/10.1117/12.3042820",
     skills: ["Python", "PyTorch", "TensorFlow", "Computer Vision", "Biomedical Imaging", "Deep Learning"],
   },
   {

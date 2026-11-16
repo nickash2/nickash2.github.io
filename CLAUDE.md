@@ -25,7 +25,8 @@ npm run preview   # Preview production build
 
 The project follows a component-based architecture with all customization centralized in `src/config.ts`:
 
-- **Components** (`src/components/`): Individual Astro components for each section (Hero, About, Projects, Experience, Education, Header, Footer)
+- **Components** (`src/components/`): Individual Astro components for each section (Hero, About, Projects, Publications, Experience, Education, Header, Footer), plus shared building blocks: `Section.astro` (section shell + heading), `EntryCard.astro` (logo/title/date/bullets card), `SocialLinks.astro` (icon links, shown only for configured socials)
+- **Navigation** (`src/navItems.ts`): Single list of section links used by both Header and Footer
 - **Main Layout** (`src/pages/index.astro`): Single-page layout that imports all components
 - **Configuration** (`src/config.ts`): Single source of truth for all content and customization
 
@@ -34,7 +35,7 @@ The project follows a component-based architecture with all customization centra
 1. **Single Configuration File**: All content is managed through `src/config.ts` to make customization simple
 2. **Conditional Rendering**: Sections automatically hide if their data is removed from the config
 3. **Component Independence**: Each section is a self-contained component that reads from the config
-4. **Accent Color System**: Single `accentColor` in config propagates throughout the site via CSS custom properties
+4. **Accent Color System**: Single `accentColor` in config is set as `--accent-color` on `<html>`; `global.css` derives `--accent-text` (a lighter, AA-contrast tint for text) and exposes both as Tailwind colors `bg-accent` / `text-accent-text`. Use `accent` for fills behind white text and `accent-text` for coloured text.
 
 ## Important Implementation Details
 

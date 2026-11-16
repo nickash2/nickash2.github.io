@@ -1,12 +1,38 @@
 @import "tailwindcss";
 
-body {
-  font-family: 'IBM Plex Mono', monospace;
-  background-color: #0f1419;
-  color: #e6e6e6;
+/* --accent-color is injected on <html> from siteConfig.accentColor. */
+:root {
+  --accent-color: #1d4ed8;
+  --accent-text: color-mix(in srgb, var(--accent-color) 50%, white);
+  --page-bg: #0f1419;
+  --page-fg: #e6e6e6;
 }
 
-/* Dark theme overrides */
+@theme inline {
+  --color-accent: var(--accent-color);
+  --color-accent-text: var(--accent-text);
+  --color-page: var(--page-bg);
+}
+
 html {
-  background-color: #0f1419;
+  background-color: var(--page-bg);
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: "IBM Plex Mono", monospace;
+  background-color: var(--page-bg);
+  color: var(--page-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+  border-radius: 4px;
 }

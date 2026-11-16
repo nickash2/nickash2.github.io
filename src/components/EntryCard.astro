@@ -1,0 +1,65 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  dateRange: string;
+  logo?: string;
+  items: string[];
+}
+
+const { title, subtitle, dateRange, logo, items } = Astro.props;
+---
+
+<article
+  class="bg-gray-800 rounded-lg shadow-sm border border-gray-700 p-4 sm:p-5 md:p-6"
+>
+  <div class="flex gap-4 mb-4">
+    <div class="flex-shrink-0">
+      <div
+        class="w-16 h-16 sm:w-18 sm:h-18 bg-gray-700 rounded-lg flex items-center justify-center border border-gray-600"
+      >
+        {
+          logo ? (
+            <img
+              src={logo}
+              alt={`${subtitle} logo`}
+              width="56"
+              height="56"
+              loading="lazy"
+              decoding="async"
+              class="w-12 h-12 sm:w-14 sm:h-14 object-contain"
+            />
+          ) : (
+            <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-500 rounded" aria-hidden="true" />
+          )
+        }
+      </div>
+    </div>
+
+    <div class="flex-1 min-w-0">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+        <div>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-100">{title}</h3>
+          <p class="text-base sm:text-lg text-accent-text">{subtitle}</p>
+        </div>
+        <span class="text-xs sm:text-sm text-gray-400 mt-2 sm:mt-0 sm:whitespace-nowrap">
+          {dateRange}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <ul class="space-y-2">
+    {
+      items.map((item) => (
+        <li class="flex items-start">
+          <span
+            class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0"
+            aria-hidden="true"
+          />
+          <span class="text-sm sm:text-base text-gray-300">{item}</span>
+        </li>
+      ))
+    }
+  </ul>
+</article>
