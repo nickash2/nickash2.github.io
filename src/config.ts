@@ -132,19 +132,17 @@ experience: [
       "Supported team training and competition preparation through mentoring and hands-on demos.",
     ],
   },
-],
-teaching: [
   {
-    role: "Teaching Assistant",
-    institution: "Leiden University",
+    company: "Leiden University",
+    title: "Teaching Assistant",
     dateRange: "Sep 2026 - Present",
     logo: "/logos/leiden_logo.jpeg",
-    courses: ["Introduction to Deep Learning", "Social Network Analysis for Computer Scientists"],
-    responsibilities: [
-      "Assessing students' abilities.",
-      "Supporting tutorials and workgroups.",
-      "Grading assignments.",
-      "Helping students prepare for exams.",
+    bullets: [
+      "Courses: Introduction to Deep Learning; Social Network Analysis for Computer Scientists.",
+      "Assess students' abilities.",
+      "Support tutorials and workgroups.",
+      "Grade assignments.",
+      "Help students prepare for exams.",
     ],
   },
 ],

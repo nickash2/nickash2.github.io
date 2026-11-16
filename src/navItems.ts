@@ -7,6 +7,5 @@ export const navItems = [
   { href: "#about", label: "About", show: true },
   { href: "#projects", label: "Projects", show: hasItems(siteConfig.projects) },
   { href: "#experience", label: "Experience", show: hasItems(siteConfig.experience) },
-  { href: "#teaching", label: "Teaching", show: hasItems(siteConfig.teaching) },
   { href: "#education", label: "Education", show: hasItems(siteConfig.education) },
 ].filter((item) => item.show);

@@ -25,9 +25,9 @@ npm run preview   # Preview production build
 
 The project follows a component-based architecture with all customization centralized in `src/config.ts`:
 
-- **Components** (`src/components/`): Individual Astro components for each section (Hero, About, Projects, Publications, Experience, Teaching, Education, Header, Footer), plus shared building blocks: `Section.astro` (section shell + heading), `EntryCard.astro` (logo/title/date/bullets card, used by Education), `SocialLinks.astro` (icon links, shown only for configured socials), `Figure.astro` (white "paper plate" figure with responsive `srcset` and mono caption)
+- **Components** (`src/components/`): Individual Astro components for each section (Hero, About, Projects, Publications, Experience, Education, Header, Footer), plus shared building blocks: `Section.astro` (section shell + heading), `EntryCard.astro` (logo/title/date/bullets card, used by Education), `SocialLinks.astro` (icon links, shown only for configured socials), `Figure.astro` (white "paper plate" figure with responsive `srcset` and mono caption)
 - **Figures** (`public/figures/`): WebP figures taken from Nicholas's own papers (never invented imagery), each with a `-<width>.webp` small variant; referenced from `heroFigure` and `publications[].figure` in the config
-- **Section order**: Hero, Publications, About, Projects, Experience, Teaching, Education. Experience renders as a company-grouped timeline: bullets are always in the DOM and visible without JS/under reduced motion; JS adds a scroll progress rail, highlights the active role and reveals bullets as they enter the viewport
+- **Section order**: Hero, Publications, About, Projects, Experience, Education. Experience renders as a company-grouped timeline: bullets are always in the DOM and visible without JS/under reduced motion; JS adds a scroll progress rail, highlights the active role and reveals bullets as they enter the viewport
 - **Navigation** (`src/navItems.ts`): Single list of section links used by both Header and Footer
 - **Main Layout** (`src/pages/index.astro`): Single-page layout that imports all components
 - **Configuration** (`src/config.ts`): Single source of truth for all content and customization
@@ -67,5 +67,4 @@ The `src/config.ts` exports a `siteConfig` object with these sections:
 - projects: array of {name, description, link, skills}
 - publications: array of {title, authors, venue, link, year, note, collaboration?, figure?}
 - experience: array of {company, title, dateRange, logo, bullets} (consecutive roles at the same company are grouped)
-- teaching: array of {role, institution, dateRange, logo, courses, responsibilities} (optional; Teaching section and nav link hide when empty)
 - education: array of {school, degree, dateRange, achievements}
