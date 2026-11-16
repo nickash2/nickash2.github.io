@@ -1,0 +1,27 @@
+---
+import Section from "./Section.astro";
+import PostList from "./PostList.astro";
+import { getPosts } from "../lib/blog";
+
+const LIMIT = 3;
+const posts = await getPosts();
+---
+
+{
+  posts.length > 0 && (
+    <Section id="blog" title="Blog">
+      <PostList posts={posts.slice(0, LIMIT)} />
+      {posts.length > LIMIT && (
+        <a
+          href="/blog/"
+          class="mt-6 inline-flex items-center gap-1.5 min-h-11 text-base text-accent-text font-medium underline underline-offset-4 decoration-1 hover:decoration-2"
+        >
+          All posts
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      )}
+    </Section>
+  )
+}

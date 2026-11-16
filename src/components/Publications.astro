@@ -12,6 +12,9 @@ type Publication = (typeof siteConfig.publications)[number] & {
     height: number;
     alt: string;
     caption: string;
+    source?: string;
+    link?: string;
+    maxDisplayWidth?: number;
   };
 };
 
@@ -54,6 +57,9 @@ const publications = (siteConfig.publications ?? []) as Publication[];
                   height={p.figure.height}
                   alt={p.figure.alt}
                   caption={p.figure.caption}
+                  source={p.figure.source}
+                  link={p.figure.link}
+                  maxDisplayWidth={p.figure.maxDisplayWidth}
                   sizes="(min-width: 1024px) 48rem, 100vw"
                 />
               )}

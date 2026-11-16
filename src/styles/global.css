@@ -6,6 +6,8 @@
   --accent-text: color-mix(in srgb, var(--accent-color) 50%, white);
   --page-bg: #0f1419;
   --page-fg: #e6e6e6;
+  /* Softened surface for paper figures, so white charts don't glare on the dark page. */
+  --paper: #dcdfe4;
 }
 
 @theme inline {

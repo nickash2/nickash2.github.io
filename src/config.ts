@@ -74,6 +74,16 @@ export const siteConfig = {
       year: 2025,
       note: "Published in SPIE 2025 in collaboration with Harvard Medical School",
       collaboration: "Harvard Medical School",
+      figure: {
+        src: "/figures/densenet121-architecture-470.webp",
+        width: 470,
+        height: 168,
+        // Source is a low-resolution screenshot: show it near its native size rather than upscaling.
+        maxDisplayWidth: 564,
+        alt: "Diagram of the DenseNet121 architecture: a 224×224 input passes through a convolution (C1) and four dense blocks (D1–D4) separated by transition layers (T1–T3), then average pooling, a dense layer and softmax. Expanded rows show the stacked dense layers (DL1–DL6) inside a dense block and the convolution and pooling inside a transition block.",
+        caption: "DenseNet121, the network used in this work, with dense blocks, transition blocks and dense layers.",
+        source: "Image: Jee et al. (2022).",
+      },
     },
   ],
 experience: [
